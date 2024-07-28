@@ -1,0 +1,63 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Product Order</h2>
+  <div class="card">
+    <div class="card-body">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Product Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders; let i = index">
+            <td>
+              <select class="form-select" [(ngModel)]="order.product" (change)="validateRow(i)">
+                <option value="">Choose Product</option>
+                <option *ngFor="let product of products" [value]="product">{{product}}</option>
+              </select>
+            </td>
+            <td>
+              <select class="form-select" [(ngModel)]="order.quantity" (change)="validateRow(i)">
+                <option value="0">Choose Quantity</option>
+                <option *ngFor="let q of quantities" [value]="q">{{q}}</option>
+              </select>
+            </td>
+            <td>
+              <button class="btn btn-primary" (click)="addRow(i)">Add</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="text-center mt-4">
+    <button class="btn btn-success" (click)="showOrder()">Show Order</button>
+  </div>
+
+  <div *ngIf="orderDisplayed" class="card mt-5">
+    <div class="card-header">
+      Order List
+    </div>
+    <div class="card-body">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Product Name</th>
+            <th scope="col">Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of displayedOrders">
+            <td>{{ order.product }}</td>
+            <td>{{ order.quantity }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="text-center mb-4">
+      <button class="btn btn-warning" (click)="readOrder()">What is my Order?</button>
+    </div>
+  </div>
+</div>

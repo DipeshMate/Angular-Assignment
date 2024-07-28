@@ -1,16 +1,16 @@
 import { TestBed } from '@angular/core/testing';
-import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
+import { ProductOrderComponent } from './Components/product-order/product-order.component';
+import { FormsModule } from '@angular/forms';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterModule.forRoot([])
-      ],
       declarations: [
-        AppComponent
+        AppComponent,
+        ProductOrderComponent
       ],
+      imports: [FormsModule]
     }).compileComponents();
   });
 
@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'product-order-app'`, () => {
+  it(`should have as title 'Product Order List Angular Assignment'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('product-order-app');
+    expect(app.title).toEqual('Product Order List Angular Assignment');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, product-order-app');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Product Order List Angular Assignment');
   });
 });
