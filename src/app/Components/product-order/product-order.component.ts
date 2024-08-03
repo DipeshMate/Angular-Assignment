@@ -34,26 +34,49 @@ export class ProductOrderComponent implements OnInit {
   ngOnInit(): void { }
 
   addRow(index: number) {
-    if (this.orders[index].product && this.orders[index].quantity !== 0) {
-      this.orders.push({ product: '', quantity: 0 });
+    if (this.orders[index].product && this.orders[index].quantity !== null) {
+      
+      if (this.orders[index].quantity === 0) {
+        alert('please choose 1 or more than 1');
+        return;
+      }
+      const isDuplicate = this.orders.some((order, i) => order.product === this.orders[index].product && i !== index)
+      if (isDuplicate) {
+        alert("can't import the same product");
+        return;
+      }
+      else {
+        this.orders.push({ product: '', quantity: 0 });
+      }
+    
     } else {
       alert('Please choose both product and quantity');
     }
+  
+   
   }
 
   validateRow(index: number) {
     if (this.orders[index].product && this.orders[index].quantity === null) {
       alert('Please choose a quantity');
     }
-    if (!this.orders[index].product && this.orders[index].quantity !== null) {
-      alert('Please choose a product');
+   if (!this.orders[index].product && this.orders[index].quantity !== null) {
+       alert('Please choose a product');
     }
+    
   }
 
   showOrder() {
     this.orders = this.orders.filter(order => order.product && order.quantity !== 0);
-    this.displayedOrders = [...this.orders];
-    this.orderDisplayed = true;
+    if (this.orders.length === 0)
+      {
+      alert('there is nothing to show!!');
+      this.orderDisplayed = false;
+      }
+      else {
+        this.displayedOrders = [...this.orders];
+      this.orderDisplayed = true;
+    }
   }
 
   async speakText(text: string): Promise<void> {

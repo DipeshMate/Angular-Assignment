@@ -20,7 +20,7 @@
             </td>
             <td>
               <select class="form-select" [(ngModel)]="order.quantity" (change)="validateRow(i)">
-                <option value="0">Choose Quantity</option>
+                <option value="">Choose Quantity</option>
                 <option *ngFor="let q of quantities" [value]="q">{{q}}</option>
               </select>
             </td>
